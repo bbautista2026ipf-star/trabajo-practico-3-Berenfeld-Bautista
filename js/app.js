@@ -82,3 +82,61 @@ document.getElementById("inputBuscador").addEventListener("keyup", (e) => {
 document
   .getElementById("btnLimpiar")
   .addEventListener("click", limpiarResultados);
+
+async function obtenerDetalle(id) {
+  try {
+    const res = await fetch(`${API_BASE}/${id}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.error("Error al obtener detalle:", err);
+    return null;
+  }
+}
+
+function mostrarModal(p) {
+  const $body = document.getElementById("modalBody");
+  const $titulo = document.getElementById("modalTitulo");
+  const modal = new bootstrap.Modal(document.getElementById("modalDetalle"));
+
+  if (!p) {
+    $titulo.textContent = "Error";
+    $body.innerHTML = `<p class="text-danger">No se pudo obtener la información del personaje.</p>`;
+    modal.show();
+    return;
+  }
+
+  const img = `${CDN_BASE}${p.portrait_path}`;
+  const frase =
+    Array.isArray(p.phrases) && p.phrases.length
+      ? p.phrases[0]
+      : "Sin frase registrada.";
+  const estado = p.status === "Alive" ? "success" : "secondary";
+
+  $titulo.textContent = p.name;
+  $body.innerHTML = `
+    <div class="row g-3">
+      <div class="col-md-5">
+        <img src="${img}" class="img-fluid rounded" alt="${p.name}" onerror="this.src='https://via.placeholder.com/500?text=Sin+imagen'" />
+      </div>
+      <div class="col-md-7">
+        <p><strong>Edad:</strong> ${p.age ?? "—"}</p>
+        <p><strong>Fecha de nacimiento:</strong> ${p.birthdate ?? "—"}</p>
+        <p><strong>Género:</strong> ${p.gender ?? "—"}</p>
+        <p><strong>Ocupación:</strong> ${p.occupation ?? "—"}</p>
+        <p><strong>Estado:</strong> <span class="badge bg-${estado}">${p.status ?? "—"}</span></p>
+        <hr />
+        <blockquote class="blockquote fst-italic">“${frase}”</blockquote>
+      </div>
+    </div>
+  `;
+  modal.show();
+}
+
+$contenedor.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".btnVerDetalle");
+  if (!btn) return;
+  const id = btn.dataset.id;
+  const detalle = await obtenerDetalle(id);
+  mostrarModal(detalle);
+});

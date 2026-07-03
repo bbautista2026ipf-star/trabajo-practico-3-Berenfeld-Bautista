@@ -15,6 +15,27 @@
       class="navbar navbar-dark bg-warning-subtle border-bottom border-3 border-warning"
     >
       <div class="container">
+        <main class="container py-4">
+          <section class="mb-4">
+            <div class="input-group">
+              <input
+                type="text"
+                id="inputBuscador"
+                class="form-control"
+                placeholder="Buscar personaje por nombre..."
+              />
+              <button id="btnBuscar" class="btn btn-warning fw-bold">
+                Buscar
+              </button>
+              <button id="btnLimpiar" class="btn btn-outline-secondary">
+                Limpiar
+              </button>
+            </div>
+            <div id="mensaje" class="mt-2 text-danger fw-semibold"></div>
+          </section>
+
+          <section id="contenedorTarjetas" class="row g-3"></section>
+        </main>
         <span class="navbar-brand fw-bold text-dark">🍩 Los Simpson</span>
       </div>
     </nav>
@@ -36,25 +57,6 @@
         </div>
       </div>
     </div>
-    <main class="container py-4">
-      <section class="mb-4">
-        <div class="input-group">
-          <input
-            type="text"
-            id="inputBuscador"
-            class="form-control"
-            placeholder="Buscar personaje por nombre..."
-          />
-          <button id="btnBuscar" class="btn btn-warning fw-bold">Buscar</button>
-          <button id="btnLimpiar" class="btn btn-outline-secondary">
-            Limpiar
-          </button>
-        </div>
-        <div id="mensaje" class="mt-2 text-danger fw-semibold"></div>
-      </section>
-
-      <section id="contenedorTarjetas" class="row g-3"></section>
-    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/app.js"></script>
