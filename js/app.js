@@ -1,5 +1,5 @@
 const API_BASE = "https://thesimpsonsapi.com/api/characters";
-const CDN_BASE = "https://thesimpsonsapi.com/api/characters/1";
+const CDN_BASE = "https://cdn.thesimpsonsapi.com/500";
 
 let personajes = [];
 
