@@ -27,3 +27,22 @@ body {
 .navbar-brand {
   font-size: 1.4rem;
 }
+
+.modal-content {
+  border: 3px solid #ffc107;
+  border-radius: 12px;
+}
+
+.modal-header {
+  border-bottom: 2px solid #e0a800;
+}
+
+.modal-body img {
+  border: 2px solid #ffc107;
+}
+
+.blockquote {
+  border-left: 4px solid #ffc107;
+  padding-left: 1rem;
+  color: #555;
+}
