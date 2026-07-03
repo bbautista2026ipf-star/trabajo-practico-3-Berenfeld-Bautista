@@ -54,3 +54,31 @@ async function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+function filtrarPersonajes(texto) {
+  const q = texto.trim().toLowerCase();
+  if (!q) {
+    $mensaje.textContent = "Ingresá un nombre para buscar.";
+    return;
+  }
+  const filtrados = personajes.filter((p) => p.name.toLowerCase().includes(q));
+  renderTarjetas(filtrados);
+}
+
+function limpiarResultados() {
+  document.getElementById("inputBuscador").value = "";
+  $mensaje.textContent = "";
+  renderTarjetas(personajes);
+}
+
+document.getElementById("btnBuscar").addEventListener("click", () => {
+  filtrarPersonajes(document.getElementById("inputBuscador").value);
+});
+
+document.getElementById("inputBuscador").addEventListener("keyup", (e) => {
+  if (e.key === "Enter") filtrarPersonajes(e.target.value);
+});
+
+document
+  .getElementById("btnLimpiar")
+  .addEventListener("click", limpiarResultados);
