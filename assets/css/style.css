@@ -1,0 +1,29 @@
+body {
+  background: #fff8dc;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.card {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+  border: 2px solid #ffc107;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+.card-img-top {
+  height: 260px;
+  object-fit: cover;
+  background: #fef3c7;
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+}
